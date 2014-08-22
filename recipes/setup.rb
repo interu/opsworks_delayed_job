@@ -5,21 +5,6 @@ include_recipe "opsworks_delayed_job::service"
 # setup delayed_job service per app
 node[:deploy].each do |application, deploy|
 
-  if deploy[:application_type] != 'rails'
-    Chef::Log.debug("Skipping opsworks_delayed_job::setup application #{application} as it is not a Rails app")
-    next
-  end
-
-  opsworks_deploy_user do
-    deploy_data deploy
-  end
-
-  opsworks_deploy_dir do
-    user deploy[:user]
-    group deploy[:group]
-    path deploy[:deploy_to]
-  end
-
   # Allow deploy user to restart workers
   template "/etc/sudoers.d/#{deploy[:user]}" do
     mode 0440
