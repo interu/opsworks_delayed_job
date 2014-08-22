@@ -5,7 +5,6 @@ node[:deploy].each do |application, deploy|
   include_recipe "opsworks_delayed_job::setup"
   
   execute "start delayed_jobs for app #{application}" do
-    Chef::Log.debug("COMMAND TO RUN #{node[:delayed_job][application][:restart_command]}")
-    node[:delayed_job][application][:restart_command]
+    command node[:delayed_job][application][:restart_command]
   end
 end
