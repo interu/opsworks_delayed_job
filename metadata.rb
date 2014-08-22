@@ -9,5 +9,3 @@ recipe 'opsworks_delayed_job::setup', 'Set up delayed_job worker.'
 recipe 'opsworks_delayed_job::service', 'Service delayed_job worker.'
 recipe 'opsworks_delayed_job::deploy', 'Deploy delayed_job worker.'
 recipe 'opsworks_delayed_job::stop', 'Stop delayed_job worker.'
-
-depends 'deploy'
